@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,12 @@ public class Inventorys : MonoBehaviour
     public List<GameObject> Inventory = new List<GameObject>();
     public List<int> ItemNums = new List<int>();
     public int SelectItem;
+    public int CurretnWeight;
+    public int MaxWeight = 250;
+    public TextMeshProUGUI WightText;
+    
+    public bool VeryWeight = false;
+    public Player player;
 
 
     private void Awake()
@@ -23,6 +30,11 @@ public class Inventorys : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.F))
@@ -30,16 +42,24 @@ public class Inventorys : MonoBehaviour
             SeTIconTest();
         }
 
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            TestGetItem();
+        }
+
         SelectingIcon();
     }
 
     public void SeTIconTest()
     {
+        int Weight = 0;
         for (int i = 0; i< Inventory.Count; i++)
         {
             Icons icons = Inventory[i].transform.Find("Icon").GetComponent<Icons>();
             icons.IconSet();
+            Weight += icons.Wieghts[ItemNums[int.Parse(icons.gameObject.transform.parent.gameObject.name) - 1]];
         }
+        WeightTextGang(Weight);
     }
 
 
@@ -47,7 +67,8 @@ public class Inventorys : MonoBehaviour
     {
         for(int i = 1; i <= 8; i++)
         {
-            Inventory.Add(GameObject.Find("인벤토리").transform.Find(i.ToString()).gameObject);
+            Inventory.Add(GameObject.Find("인벤토리").transform.Find("인벤박스").transform.Find(i.ToString()).gameObject);
+            ItemNums.Add(0);
         }
         SelectItem = 0;
         SelectIcon();
@@ -94,4 +115,36 @@ public class Inventorys : MonoBehaviour
             SelectIcon();
         }
     }
+
+    void TestGetItem()
+    {
+        for (int i = 1; i <= Inventory.Count; i++)
+        {
+            if (ItemNums[i-1] == 0)
+            {
+                ItemNums[i - 1] = Random.Range(1, 7);
+                SeTIconTest();
+                break;
+            }
+        }
+    }
+
+    void WeightTextGang(int Weight)
+    {
+        CurretnWeight = Weight;
+        WightText.text = "Weight : " + CurretnWeight + "/" + MaxWeight;
+        if (CurretnWeight > MaxWeight)
+        {
+            Debug.Log("과중량 상태입니다.");
+            VeryWeight = true;
+            player.VeryWeight();
+        }
+        else
+        {
+            Debug.Log("과중량 상태가 아닙니다.");
+            VeryWeight = false;
+            player.VeryWeight();
+        }
+    }
+    
 }

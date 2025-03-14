@@ -9,7 +9,7 @@ public class CreatInventroyUI : MonoBehaviour
     public GameObject Parents;
     private void Start()
     {
-        Parents = GameObject.Find("인벤토리");
+        Parents = GameObject.Find("인벤토리").transform.Find("인벤박스").gameObject;
         CreateBox(InventoryNum);
     }
 
