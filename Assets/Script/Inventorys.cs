@@ -76,7 +76,7 @@ public class Inventorys : MonoBehaviour
 
     void SelectIcon()
     {
-        for(int i = 0; i < Inventory.Count; i++)
+        for(int i = 0; i < 8; i++)
         {
             if (Inventory[i] == Inventory[SelectItem])
             {

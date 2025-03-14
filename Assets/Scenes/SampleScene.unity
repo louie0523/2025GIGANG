@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryBox: {fileID: 4221726565963749929, guid: f0ad73155f8bbee4e9f3d66ee433fb89, type: 3}
-  InventoryNum: 6
+  InventoryNum: 8
   Parents: {fileID: 0}
 --- !u!1 &1031757767
 GameObject:
