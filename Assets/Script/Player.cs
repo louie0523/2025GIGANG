@@ -10,12 +10,15 @@ public class Player : MonoBehaviour
     Animator animator;
     public float speed = 4f;
     public float speed_Down = 0f;
+    public float Jump_Power = 5f;
     public int Maxhp = 100;
     public int Hp = 100;
     public float Air = 100f;
 
     bool Walk = false;
     bool Death = false;
+    public bool isAttacking = false;
+    public bool isJump = false;
 
     public Slider AirSlider;
     public Slider HpSlider;
@@ -38,6 +41,7 @@ public class Player : MonoBehaviour
         AirSlider.value = 1f;
         HpSlider.value = 1f;
         StartCoroutine(UpdateAir());
+
     }
 
     // Update is called once per frame
@@ -50,6 +54,8 @@ public class Player : MonoBehaviour
             Rotation();
             ItemUse();
             LightOn();
+            Attack();
+            Jump();
         }
     }
 
@@ -154,11 +160,18 @@ public class Player : MonoBehaviour
     public void Damage(int damage)
     {
         Hp -= damage;
+        HpSliderUpdate();
         if (Hp <= 0)
         {
             Death = true;
             Debug.Log("사망하셨습니다. 게임 오버!");
+            animator.SetTrigger("Death");
         }
+    }
+
+    void HpSliderUpdate()
+    {
+        HpSlider.value = Hp / 100f;
     }
 
     void LightOn()
@@ -178,7 +191,8 @@ public class Player : MonoBehaviour
     public void Heal(int heal)
     {
         Hp += heal;
-        if(Hp > Maxhp)
+        HpSliderUpdate();
+        if (Hp > Maxhp)
         {
             Hp = Maxhp;
         }
@@ -221,6 +235,54 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+    void Attack()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            animator.SetTrigger("Attack");
+            isAttacking = true;
+            Invoke("AttackEnd", 0.5f);
+        }
+
+
+    }
+
+
+    IEnumerator AttackEnd()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isAttacking = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isJump = false;
+        } else if(collision.gameObject.CompareTag("Lava")) {
+            Damage(1000);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isJump = true;
+        }
+    }
+
+
+    void Jump()
+    {
+
+        if(Input.GetKeyDown(KeyCode.Space) && !isJump)
+        {
+            rb.AddForce(Vector3.up *Jump_Power, ForceMode.Impulse);
+            isJump = true;
+        }
+    }
+
+
 
 }
