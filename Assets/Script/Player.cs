@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     public int Hp = 100;
     public float Air = 100f;
 
-    bool Walk = false;
     bool Death = false;
     public bool isAttacking = false;
     public bool isJump = false;
@@ -61,28 +60,26 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        Walk = false;
+        Vector3 moveMent = Vector3.zero;
         if(Input.GetKey(KeyCode.W))
         {
-            this.transform.Translate(0, 0, (speed - speed_Down) * Time.deltaTime);
-            Walk = true;
+            moveMent += Vector3.forward;
         } else if(Input.GetKey(KeyCode.S))
         {
-            this.transform.Translate(0, 0, -(speed - speed_Down) * Time.deltaTime);
-            Walk = true;
+            moveMent += Vector3.back;
         }
         if(Input.GetKey(KeyCode.D))
         {
-            this.transform.Translate((speed - speed_Down) * Time.deltaTime, 0, 0);
-            Walk = true;
+            moveMent += Vector3.right;
         } else if(Input.GetKey(KeyCode.A))
         {
-            this.transform.Translate(-(speed - speed_Down) * Time.deltaTime, 0, 0);
-            Walk = true;
+            moveMent += Vector3.left;
         }
 
-        if(Walk)
+        if (moveMent != Vector3.zero)
         {
+            moveMent.Normalize();
+            this.transform.Translate(moveMent * speed * Time.deltaTime);
             animator.SetBool("Walk", true);
         } else
         {
