@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         if (moveMent != Vector3.zero)
         {
             moveMent.Normalize();
-            this.transform.Translate(moveMent * speed * Time.deltaTime);
+            this.transform.Translate(moveMent * (speed - speed_Down) * Time.deltaTime);
             animator.SetBool("Walk", true);
         } else
         {
