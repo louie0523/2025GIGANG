@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 13
 --- !u!95 &54514977
 Animator:
@@ -1948,7 +1949,7 @@ GameObject:
   - component: {fileID: 788593388}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2154,6 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 8
 --- !u!95 &839633115
 Animator:
@@ -2431,6 +2433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 14
 --- !u!95 &970452896
 Animator:
@@ -2870,6 +2873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 9
 --- !u!95 &1197553720
 Animator:
@@ -3501,6 +3505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 11
 --- !u!95 &1423729245
 Animator:
@@ -3945,6 +3950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 7
 --- !u!54 &1501571537
 Rigidbody:
@@ -5067,6 +5073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 12
 --- !u!95 &2022542349
 Animator:
@@ -5268,6 +5275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f56016046d2004ba2e4db324f73cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Power: -15
   Waittime: 10
 --- !u!95 &2126881924
 Animator:
