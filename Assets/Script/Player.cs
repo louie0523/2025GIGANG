@@ -256,9 +256,10 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isJump = false;
-        } else if(collision.gameObject.CompareTag("Lava")) {
+        } else if(collision.gameObject.CompareTag("Lava") || collision.gameObject.CompareTag("Spike"))
+        {
             Damage(1000);
-        }
+        } 
     }
 
     private void OnCollisionExit(Collision collision)

@@ -7,6 +7,9 @@ TagManager:
   - Sword
   - Ground
   - Lava
+  - Spike
+  - Red
+  - Blue
   layers:
   - Default
   - TransparentFX

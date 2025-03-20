@@ -8,6 +8,14 @@ public class Trap : MonoBehaviour
     public float Power = -15f;
     public float Waittime = 10f;
 
+    public enum TrapType
+    {
+        Push,
+        Spike,
+    }
+
+    public TrapType type;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -18,8 +26,13 @@ public class Trap : MonoBehaviour
     {
         while(true)
         {
-        animator.SetTrigger("Move");
-        yield return new WaitForSeconds(Waittime);
+            animator.SetTrigger("Move");
+            if(type == TrapType.Spike )
+            {
+                Debug.Log(type.ToString());
+            }
+
+            yield return new WaitForSeconds(Waittime);
         }
 
     }
@@ -27,7 +40,10 @@ public class Trap : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player")) {
-            collision.rigidbody.AddForce(100 * Power, 0, 0);
+            if(type == TrapType.Push)
+            {
+                collision.rigidbody.AddForce(100 * Power, 0, 0);
+            } 
         }
     }
 }
