@@ -7,7 +7,6 @@ public class Puzzle1 : MonoBehaviour
     Animator animator;
     public string tagName;
     public bool Clear = false;
-    public GameObject[] Boxs;
     bool isFirst = false;
 
     public enum TypePuzzle
