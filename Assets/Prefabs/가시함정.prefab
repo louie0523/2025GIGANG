@@ -1584,7 +1584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: -15
-  Waittime: 6
+  Waittime: 8
   type: 1
 --- !u!1 &3163096691838942023
 GameObject:
