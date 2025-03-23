@@ -116,7 +116,7 @@ public class Inventorys : MonoBehaviour
         }
     }
 
-    void TestGetItem()
+    public void TestGetItem()
     {
         for (int i = 1; i <= Inventory.Count; i++)
         {
