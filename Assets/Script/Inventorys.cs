@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Inventorys : MonoBehaviour
 {
     public static Inventorys Instance;
+    public int CreatInvenBoxNum = 6;
     public List<GameObject> Inventory = new List<GameObject>();
     public List<int> ItemNums = new List<int>();
     public int SelectItem;
@@ -47,7 +48,22 @@ public class Inventorys : MonoBehaviour
             TestGetItem();
         }
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            InventorySet();
+        }
+
         SelectingIcon();
+    }
+
+    public void InventoryUp()
+    {
+        CreatInventroyUI.instance.InvenBoxClear();
+        Inventory.Clear();
+        ItemNums.Clear();
+        CreatInventroyUI.instance.CreateBox(CreatInvenBoxNum);
+
+        Invoke("InventorySet", 0.1f);
     }
 
     public void SeTIconTest()
@@ -65,7 +81,9 @@ public class Inventorys : MonoBehaviour
 
     public void InventorySet()
     {
-        for(int i = 1; i <= 8; i++)
+        ItemNums.Clear();
+        Inventory.Clear();
+        for(int i = 1; i <= CreatInvenBoxNum; i++)
         {
             Inventory.Add(GameObject.Find("인벤토리").transform.Find("인벤박스").transform.Find(i.ToString()).gameObject);
             ItemNums.Add(0);
@@ -76,7 +94,7 @@ public class Inventorys : MonoBehaviour
 
     void SelectIcon()
     {
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < CreatInvenBoxNum; i++)
         {
             if (Inventory[i] == Inventory[SelectItem])
             {
@@ -96,7 +114,7 @@ public class Inventorys : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if(SelectItem < 7)
+            if(SelectItem < CreatInvenBoxNum)
             {
                 SelectItem++;
             } else

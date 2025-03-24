@@ -14,8 +14,10 @@ public class Trap : MonoBehaviour
         Spike,
     }
 
-    public TrapType type;
 
+
+    public TrapType type;
+    public float PushRot = 0;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -42,7 +44,7 @@ public class Trap : MonoBehaviour
         if(collision.gameObject.CompareTag("Player")) {
             if(type == TrapType.Push)
             {
-                collision.rigidbody.AddForce(100 * Power, 0, 0);
+                collision.rigidbody.AddForce(100 * Power * PushRot, 0, 0);
             } 
         }
     }

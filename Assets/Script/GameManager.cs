@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int Stage = 0;
+    public int Gold = 5000;
     public List<int> StagePuzzleInt = new List<int>();
 
     private void Awake()
@@ -21,7 +22,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    private void Start()
+    {
+        Store.Instance.SetGoldText();
+    }
+
+
 
 
 

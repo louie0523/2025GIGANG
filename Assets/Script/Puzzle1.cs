@@ -8,6 +8,7 @@ public class Puzzle1 : MonoBehaviour
     public string tagName;
     public bool Clear = false;
     bool isFirst = false;
+    public int needPuzzleClear = 2;
 
     public enum TypePuzzle
     {
@@ -28,7 +29,7 @@ public class Puzzle1 : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.StagePuzzleInt[0] >= 2 && typeP == TypePuzzle.Door && !isFirst)
+        if (GameManager.Instance.StagePuzzleInt[0] >= needPuzzleClear && typeP == TypePuzzle.Door && !isFirst)
         {
             isFirst = true;
             animator.SetTrigger("DoorOpen");

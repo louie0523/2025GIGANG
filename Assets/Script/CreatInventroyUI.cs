@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class CreatInventroyUI : MonoBehaviour
 {
+    public static CreatInventroyUI instance;
     public GameObject InventoryBox;
-    public int InventoryNum;
     public GameObject Parents;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        } else
+        {
+            Destroy(instance);
+        }
+    }
     private void Start()
     {
         Parents = GameObject.Find("인벤토리").transform.Find("인벤박스").gameObject;
-        CreateBox(InventoryNum);
+        CreateBox(Inventorys.Instance.CreatInvenBoxNum);
     }
 
-    void CreateBox(int num)
+    public void CreateBox(int num)
     {
-        for(int i = 1; i <= num; i++)
+        for (int i = 1; i <= num; i++)
         {
             GameObject invenBox = Instantiate(InventoryBox, Parents.transform);
             invenBox.name = i.ToString();
@@ -29,5 +40,13 @@ public class CreatInventroyUI : MonoBehaviour
         }
 
         Inventorys.Instance.InventorySet();
+    }
+
+    public void InvenBoxClear()
+    {
+        foreach (Transform box in Parents.transform)
+        {
+            Destroy(box.gameObject);
+        }
     }
 }

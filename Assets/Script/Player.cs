@@ -148,7 +148,8 @@ public class Player : MonoBehaviour
         while (Air >= 1)
         {
             yield return new WaitForSeconds(2f);
-            Air -= 0.25f;
+            Air -= 0.25f - (float)((Store.Instance.AirLevel-1) * 0.1);
+            Debug.Log(0.25f - (float)((Store.Instance.AirLevel - 1) * 0.1));
             AirSlider.value = Air / 100f;
         }
         Debug.Log("산소가 모두 떨어졌습니다. 게임 오버!");
