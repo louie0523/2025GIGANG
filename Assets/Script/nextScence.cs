@@ -5,14 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class nextScence : MonoBehaviour
 {
-    public int NextSenceNum = 2;
+    public GameObject StorUI;
+    public GameObject panel;
 
+    private void Start()
+    {
+        StorUI = GameObject.Find("Canvas").transform.Find("ªÛ¡°UI").gameObject;
+        panel = StorUI.transform.Find("panel").gameObject;
+        panel.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(NextSenceNum);
+            Inventorys.Instance.ItemAllSell();
+            panel.SetActive(true);
         }
     }
 }

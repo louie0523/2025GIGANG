@@ -164,5 +164,20 @@ public class Inventorys : MonoBehaviour
             player.VeryWeight();
         }
     }
-    
+
+
+    public void ItemAllSell()
+    {
+        for (int i = 1; i <= CreatInvenBoxNum; i++)
+        {
+            if(ItemNums[i-1] != 0)
+            {
+                ItemNums[i - 1] = 0;
+            }
+        }
+        GameManager.Instance.Gold += CurretnWeight * 15;
+        Store.Instance.SetGoldText();
+        SeTIconTest();
+        CurretnWeight = 0;
+    }
 }

@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Store : MonoBehaviour
 {
     public static Store Instance;
+
+    public GameObject StoreUI;
 
     public Slider AirSlider;
     public Slider BagSlider;
@@ -19,6 +22,8 @@ public class Store : MonoBehaviour
 
     public int AirLevel = 1;
     public int BagLevel = 1;
+
+    public int SNum = 2;
 
 
     private void Awake()
@@ -64,6 +69,7 @@ public class Store : MonoBehaviour
             BagGoldText.text = BagNeedGold.ToString();
             BagSlider.value += 0.5f;
             SetGoldText();
+            Inventorys.Instance.MaxWeight += 150;
             Inventorys.Instance.CreatInvenBoxNum = 8;
             Inventorys.Instance.InventoryUp();
         }
@@ -71,6 +77,14 @@ public class Store : MonoBehaviour
         {
             Debug.Log("이미 최대 레벨이거나, 골드가 부족합니다.");
         }
+    }
+
+
+    public void NextScence()
+    {
+        StoreUI.SetActive(false);
+        SceneManager.LoadScene(SNum);
+        SNum++;
     }
 
 
